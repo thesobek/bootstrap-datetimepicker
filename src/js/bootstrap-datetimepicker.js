@@ -73,22 +73,30 @@
                 {
                     clsName: 'days',
                     navFnc: 'M',
-                    navStep: 1
+                    navStep: 1,
+                    navMonthFnc: 'Y',
+                    navMonthStep: 1
                 },
                 {
                     clsName: 'months',
                     navFnc: 'y',
-                    navStep: 1
+                    navStep: 1,
+                    navMonthFnc: 'Y',
+                    navMonthStep: 1
                 },
                 {
                     clsName: 'years',
                     navFnc: 'y',
-                    navStep: 10
+                    navStep: 10,
+                    navMonthFnc: 'Y',
+                    navMonthStep: 1
                 },
                 {
                     clsName: 'decades',
                     navFnc: 'y',
-                    navStep: 100
+                    navStep: 100,
+                    navMonthFnc: 'Y',
+                    navMonthStep: 1
                 }
             ],
             viewModes = ['days', 'months', 'years', 'decades'],
@@ -164,41 +172,45 @@
 
             getDatePickerTemplate = function () {
                 var headTemplate = $('<thead>')
-                        .append($('<tr>')
-                            .append($('<th>').addClass('prev').attr('data-action', 'previous')
-                                .append($('<span>').addClass(options.icons.previous))
-                                )
-                            .append($('<th>').addClass('picker-switch').attr('data-action', 'pickerSwitch').attr('colspan', (options.calendarWeeks ? '6' : '5')))
-                            .append($('<th>').addClass('next').attr('data-action', 'next')
-                                .append($('<span>').addClass(options.icons.next))
-                                )
-                            ),
+                    .append($('<tr>')
+                        //
+                        .append($('<th>').addClass('prev')
+                            .append($('<span>').addClass(options.icons.prevMonth).attr('data-action', 'previousMonth'))
+                            .append($('<span>').addClass(options.icons.previous).attr('data-action', 'previous'))
+                        )
+                        //
+                        .append($('<th>').addClass('picker-switch').attr('data-action', 'pickerSwitch').attr('colspan', (options.calendarWeeks ? '6' : '5')))
+                        .append($('<th>').addClass('next')
+                            .append($('<span>').addClass(options.icons.nextMonth).attr('data-action', 'nextMonth'))
+                            .append($('<span>').addClass(options.icons.next).attr('data-action', 'next'))
+                        )
+                    ),
                     contTemplate = $('<tbody>')
                         .append($('<tr>')
                             .append($('<td>').attr('colspan', (options.calendarWeeks ? '8' : '7')))
-                            );
+                        );
 
                 return [
                     $('<div>').addClass('datepicker-days')
                         .append($('<table>').addClass('table-condensed')
                             .append(headTemplate)
                             .append($('<tbody>'))
-                            ),
+                        ),
                     $('<div>').addClass('datepicker-months')
                         .append($('<table>').addClass('table-condensed')
                             .append(headTemplate.clone())
                             .append(contTemplate.clone())
-                            ),
+                        ),
                     $('<div>').addClass('datepicker-years')
                         .append($('<table>').addClass('table-condensed')
                             .append(headTemplate.clone())
                             .append(contTemplate.clone())
-                            ),
+                        ),
                     $('<div>').addClass('datepicker-decades')
                         .append($('<table>').addClass('table-condensed')
                             .append(headTemplate.clone())
                             .append(contTemplate.clone())
-                            )
+                        )
                 ];
             },
 
@@ -262,7 +274,7 @@
 
             getTimePickerTemplate = function () {
                 var hoursView = $('<div>').addClass('timepicker-hours')
-                        .append($('<table>').addClass('table-condensed')),
+                    .append($('<table>').addClass('table-condensed')),
                     minutesView = $('<div>').addClass('timepicker-minutes')
                         .append($('<table>').addClass('table-condensed')),
                     secondsView = $('<div>').addClass('timepicker-seconds')
@@ -907,6 +919,20 @@
                     viewUpdate(navFnc);
                 },
 
+                previousMonth: function () {
+                    var navFnc = datePickerModes[currentViewMode].navMonthFnc;
+                    viewDate.subtract(datePickerModes[currentViewMode].navMonthStep, navFnc);
+                    fillDate();
+                    viewUpdate(navFnc);
+                },
+
+                nextMonth: function () {
+                    var navFnc = datePickerModes[currentViewMode].navMonthFnc;
+                    viewDate.add(datePickerModes[currentViewMode].navMonthStep, navFnc);
+                    fillDate();
+                    viewUpdate(navFnc);
+                },
+
                 pickerSwitch: function () {
                     showMode(1);
                 },
@@ -1183,7 +1209,8 @@
 
             toggle = function () {
                 /// <summary>Shows or hides the widget</summary>
-                return (widget ? hide() : show());
+                return (widget ? void(0) : show());
+                //return (widget ? hide() : show());
             },
 
             parseInputDate = function (inputDate) {
@@ -2306,6 +2333,8 @@
             down: 'glyphicon glyphicon-chevron-down',
             previous: 'glyphicon glyphicon-chevron-left',
             next: 'glyphicon glyphicon-chevron-right',
+            prevMonth: 'glyphicon glyphicon-backward',
+            nextMonth: 'glyphicon glyphicon-forward',
             today: 'glyphicon glyphicon-screenshot',
             clear: 'glyphicon glyphicon-trash',
             close: 'glyphicon glyphicon-remove'
