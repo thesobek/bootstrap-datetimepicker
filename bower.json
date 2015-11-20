@@ -7,7 +7,7 @@
   ],
   "dependencies": {
     "jquery": ">=1.8.3",
-    "moment": "git@github.com:thesobek/moment.git#develop"
+    "moment": "http://github.com/thesobek/moment.git#develop"
   },
   "homepage": "https://github.com/Eonasdan/bootstrap-datetimepicker",
   "authors": [
