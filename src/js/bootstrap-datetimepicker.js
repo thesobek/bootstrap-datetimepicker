@@ -859,7 +859,6 @@
             },
 
             hide = function () {
-                return false;
                 ///<summary>Hides the widget. Possibly will emit dp.hide</summary>
                 var transitioning = false;
                 if (!widget) {
