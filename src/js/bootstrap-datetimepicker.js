@@ -173,16 +173,16 @@
             getDatePickerTemplate = function () {
                 var headTemplate = $('<thead>')
                     .append($('<tr>')
-                        //
+                        //  prev, prevYear
                         .append($('<th>').addClass('prev')
                             .append($('<span>').addClass(options.icons.prevMonth).attr('data-action', 'previousMonth'))
                             .append($('<span>').addClass(options.icons.previous).attr('data-action', 'previous'))
                         )
-                        //
                         .append($('<th>').addClass('picker-switch').attr('data-action', 'pickerSwitch').attr('colspan', (options.calendarWeeks ? '6' : '5')))
+                        //  next, nextYear
                         .append($('<th>').addClass('next')
-                            .append($('<span>').addClass(options.icons.nextMonth).attr('data-action', 'nextMonth'))
                             .append($('<span>').addClass(options.icons.next).attr('data-action', 'next'))
+                            .append($('<span>').addClass(options.icons.nextMonth).attr('data-action', 'nextMonth'))
                         )
                     ),
                     contTemplate = $('<tbody>')
