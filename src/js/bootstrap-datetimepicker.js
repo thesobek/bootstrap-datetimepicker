@@ -186,11 +186,12 @@
                         .append($('<th>').addClass('picker-switch').attr('data-action', 'pickerSwitch').attr('colspan', (options.calendarWeeks ? '6' : '5')))
                         .append($('<th>').addClass('calendar-navs')
                             .append($('<div>').addClass('calendar-nav')
-                                .append($('<span>').addClass('nextMonth').addClass(options.icons.nextMonth).attr('data-action', 'nextMonth'))
-                            )
-                            .append($('<div>').addClass('calendar-nav')
                                 .append($('<span>').addClass('nextYear').addClass(options.icons.next).attr('data-action', 'next'))
                             )
+                            .append($('<div>').addClass('calendar-nav')
+                                .append($('<span>').addClass('nextMonth').addClass(options.icons.nextMonth).attr('data-action', 'nextMonth'))
+                            )
+
                         )
                     ),
                     contTemplate = $('<tbody>')
