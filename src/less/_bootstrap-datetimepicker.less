@@ -21,7 +21,7 @@
     &.dropdown-menu {
         margin: 2px 0;
         padding: 4px;
-        width: 21em;
+        width: 26.5em;
 
         &.timepicker-sbs {
             @media (min-width: @screen-sm-min) {
@@ -212,15 +212,31 @@
                 cursor: not-allowed;
             }
 
-            &.prev::after {
-                .sr-only();
-                content: "Previous Month";
+            &.prevMonth::after {
+              .sr-only();
+              content: "Previous Month";
             }
 
-            &.next::after {
-                .sr-only();
-                content: "Next Month";
+            &.prevYear::after {
+              .sr-only();
+              content: "Previous Year";
             }
+
+            &.nextYear::after {
+              .sr-only();
+              content: "Next Year";
+            }
+
+            &.nextMonth::after {
+              .sr-only();
+              content: "Next Month";
+          }
+        }
+
+        & thead {
+          & .calendar-nav:hover {
+            background: #eeeeee;
+          }
         }
 
         & thead tr:first-child th {
@@ -229,6 +245,11 @@
             &:hover {
                 background: @bs-datetimepicker-btn-hover-bg;
             }
+
+            &.calendar-navs:hover {
+              background: none;
+            }
+
         }
 
         & td {
@@ -348,4 +369,23 @@
     & .input-group-addon {
         cursor: pointer;
     }
+}
+
+.calendar-nav {
+  display: inline-block;
+  line-height: 25px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.calendar-nav:last-child {
+  margin-left: 10px;
+}
+
+.calendar-nav-previous .calendar-nav:last-child {
+  margin-left: 0px;
+}
+
+.calendar-nav-previousMonth {
+  margin-right: 15px;
 }

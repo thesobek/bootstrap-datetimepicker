@@ -9,7 +9,7 @@
 .bootstrap-datetimepicker-widget.dropdown-menu {
   margin: 2px 0;
   padding: 4px;
-  width: 21em;
+  width: 26.5em;
 }
 @media (min-width: 768px) {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
@@ -238,7 +238,7 @@
   color: #777777;
   cursor: not-allowed;
 }
-.bootstrap-datetimepicker-widget table th.prev::after {
+.bootstrap-datetimepicker-widget table th.prevMonth::after {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -249,7 +249,29 @@
   border: 0;
   content: "Previous Month";
 }
-.bootstrap-datetimepicker-widget table th.next::after {
+.bootstrap-datetimepicker-widget table th.prevYear::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Previous Year";
+}
+.bootstrap-datetimepicker-widget table th.nextYear::after {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  content: "Next Year";
+}
+.bootstrap-datetimepicker-widget table th.nextMonth::after {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -260,11 +282,17 @@
   border: 0;
   content: "Next Month";
 }
+.bootstrap-datetimepicker-widget table thead .calendar-nav:hover {
+  background: #eeeeee;
+}
 .bootstrap-datetimepicker-widget table thead tr:first-child th {
   cursor: pointer;
 }
 .bootstrap-datetimepicker-widget table thead tr:first-child th:hover {
   background: #eeeeee;
+}
+.bootstrap-datetimepicker-widget table thead tr:first-child th.calendar-navs:hover {
+  background: none;
 }
 .bootstrap-datetimepicker-widget table td {
   height: 54px;
@@ -359,6 +387,21 @@
 }
 .input-group.date .input-group-addon {
   cursor: pointer;
+}
+.calendar-nav {
+  display: inline-block;
+  line-height: 25px;
+  padding: 5px;
+  border-radius: 3px;
+}
+.calendar-nav:last-child {
+  margin-left: 10px;
+}
+.calendar-nav-previous .calendar-nav:last-child {
+  margin-left: 0px;
+}
+.calendar-nav-previousMonth {
+  margin-right: 15px;
 }
 .sr-only {
   position: absolute;

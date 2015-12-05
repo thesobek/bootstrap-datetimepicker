@@ -173,16 +173,24 @@
             getDatePickerTemplate = function () {
                 var headTemplate = $('<thead>')
                     .append($('<tr>')
-                        //  prev, prevYear
-                        .append($('<th>').addClass('prev')
-                            .append($('<span>').addClass(options.icons.prevMonth).attr('data-action', 'previousMonth'))
-                            .append($('<span>').addClass(options.icons.previous).attr('data-action', 'previous'))
+                        //
+                        .append($('<th>').addClass('calendar-navs').addClass('calendar-nav-previous')
+                            .append($('<div>').addClass('calendar-nav').addClass('calendar-nav-previousMonth')
+                                .append($('<span>').addClass(options.icons.prevMonth).attr('data-action', 'previousMonth'))
+                            )
+                            .append($('<div>').addClass('calendar-nav').addClass('calendar-nav-previousYear')
+                                .append($('<span>').addClass(options.icons.previous).attr('data-action', 'previous'))
+                            )
                         )
+                        //
                         .append($('<th>').addClass('picker-switch').attr('data-action', 'pickerSwitch').attr('colspan', (options.calendarWeeks ? '6' : '5')))
-                        //  next, nextYear
-                        .append($('<th>').addClass('next')
-                            .append($('<span>').addClass(options.icons.next).attr('data-action', 'next'))
-                            .append($('<span>').addClass(options.icons.nextMonth).attr('data-action', 'nextMonth'))
+                        .append($('<th>').addClass('calendar-navs')
+                            .append($('<div>').addClass('calendar-nav')
+                                .append($('<span>').addClass('nextMonth').addClass(options.icons.nextMonth).attr('data-action', 'nextMonth'))
+                            )
+                            .append($('<div>').addClass('calendar-nav')
+                                .append($('<span>').addClass('nextYear').addClass(options.icons.next).attr('data-action', 'next'))
+                            )
                         )
                     ),
                     contTemplate = $('<tbody>')
@@ -668,9 +676,13 @@
                     return;
                 }
 
-                daysViewHeader.eq(0).find('span').attr('title', 'Previous Month');
+                daysViewHeader.eq(0).find('span:eq(1)').attr('title', 'Previous Month');
+                daysViewHeader.eq(0).find('span:eq(0)').attr('title', 'Previous Year');
+
                 daysViewHeader.eq(1).attr('title', 'Select Month');
-                daysViewHeader.eq(2).find('span').attr('title', 'Next Month');
+
+                daysViewHeader.eq(2).find('span:eq(0)').attr('title', 'Next Month');
+                daysViewHeader.eq(2).find('span:eq(1)').attr('title', 'Next Year');
 
                 daysView.find('.disabled').removeClass('disabled');
                 daysViewHeader.eq(1).text(viewDate.format(options.dayViewHeaderFormat));
