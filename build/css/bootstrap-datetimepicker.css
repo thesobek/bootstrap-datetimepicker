@@ -403,6 +403,7 @@
 .calendar-nav-previousMonth {
   margin-right: 15px;
 }
+.datepicker-days.calendar-navs,
 .datepicker-months .calendar-navs,
 .datepicker-years .calendar-navs,
 .datepicker-decades .calendar-navs {
